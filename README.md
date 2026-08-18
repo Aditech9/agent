@@ -1,16 +1,14 @@
-# agent
-AI agent using python
-# 🤖 Basic AI Agent using Python and OpenAI API
+# Simple AI Agent
 
 ## 📌 Project Overview
 
-This project is a basic **AI Agent** developed using **Python** and the **OpenAI API**.
+This project is a **simple Python-based AI Agent** designed for beginners. The agent can understand basic user commands and perform simple actions such as:
 
-The purpose of this project is to understand the basic working of an AI Agent and demonstrate how an AI model can be integrated into a Python application.
+* Saying Hello
+* Displaying the current date
+* Exiting the program
 
-The agent accepts questions or instructions from the user, sends them to an OpenAI AI model, and displays the generated response.
-
-This project is developed as part of the **AI-Augmented Workflow** course.
+The project demonstrates the basic concept of an **AI Agent using Python conditions and functions**.
 
 ---
 
@@ -18,544 +16,211 @@ This project is developed as part of the **AI-Augmented Workflow** course.
 
 The main objectives of this project are:
 
-* To understand the concept of an AI Agent.
-* To integrate an AI model with a Python application.
-* To learn how to use the OpenAI API.
-* To understand API-based AI applications.
-* To practice AI-assisted software development.
-* To create a simple interactive AI Agent.
-* To understand secure handling of API keys.
-* To provide a foundation for developing more advanced AI Agents.
+1. To understand the basic concept of an AI Agent.
+2. To learn how Python functions work.
+3. To use `if-elif-else` statements for decision-making.
+4. To use Python's `datetime` module.
+5. To create an interactive command-line agent.
 
 ---
 
-## 🏗️ System Architecture
+## 🛠️ Technologies Used
 
-The basic architecture of the AI Agent is:
+* **Programming Language:** Python
+* **Module:** `datetime`
+* **Interface:** Command Line / Terminal
+
+---
+
+## 📂 Project Structure
 
 ```text
-                USER
-                  |
-                  v
-          Python Application
-                  |
-                  v
-            AI Agent Logic
-                  |
-                  v
-             OpenAI API
-                  |
-                  v
-              AI Model
-                  |
-                  v
-            AI Response
-                  |
-                  v
-                USER
-```
-
-### Workflow
-
-1. The user enters a question or instruction.
-2. The Python application receives the input.
-3. The AI Agent sends the input to the OpenAI API.
-4. The OpenAI model processes the request.
-5. The generated response is returned to the Python application.
-6. The response is displayed to the user.
-7. The agent continues accepting input until the user types `exit`.
-
----
-
-## 🛠️ Technology Stack
-
-| Technology        | Purpose                       |
-| ----------------- | ----------------------------- |
-| Python            | Main programming language     |
-| OpenAI API        | AI model integration          |
-| OpenAI Python SDK | Communication with OpenAI API |
-| python-dotenv     | Loading environment variables |
-| `.env`            | Secure API key configuration  |
-| Git/GitHub        | Version control               |
-| Markdown          | Project documentation         |
-
----
-
-## 📁 Project Structure
-
-```text
-AI-Agent-Project/
+Simple-AI-Agent/
 │
-├── agent.py
-├── .env
-├── .gitignore
-├── requirements.txt
-├── README.md
-│
-└── ADR-001-Tech-Stack.md
-```
-
-### File Description
-
-**`agent.py`**
-
-Contains the main Python code for the AI Agent.
-
-**`.env`**
-
-Stores the OpenAI API key securely.
-
-**`.gitignore`**
-
-Prevents sensitive files such as `.env` and Python environment files from being uploaded to GitHub.
-
-**`requirements.txt`**
-
-Contains the Python packages required by the project.
-
-**`README.md`**
-
-Contains project documentation and instructions.
-
-**`ADR-001-Tech-Stack.md`**
-
-Contains the Architecture Decision Record explaining why Python and the OpenAI API were selected.
-
----
-
-## ⚙️ Requirements
-
-Before running the project, make sure you have:
-
-* Python 3 installed.
-* An OpenAI API key.
-* Internet connection.
-* Terminal / Command Prompt / Anaconda Prompt.
-* Required Python packages installed.
-
----
-
-## 🚀 Installation
-
-### Step 1: Clone or download the project
-
-Download the project to your computer and open the project folder in a terminal.
-
-### Step 2: Create a virtual environment
-
-Run:
-
-```bash
-python -m venv .venv
-```
-
-### Step 3: Activate the virtual environment
-
-For Windows:
-
-```bash
-.venv\Scripts\activate
-```
-
-### Step 4: Install required packages
-
-Run:
-
-```bash
-pip install openai python-dotenv
-```
-
-Or install from the requirements file:
-
-```bash
-pip install -r requirements.txt
+├── ai_agent.py
+└── README.md
 ```
 
 ---
 
-## 🔑 API Key Configuration
+## 💻 Code
+
+```python
+import datetime
+
+def ai_agent():
+    print("Hello! I am your simple AI Agent.")
+
+    while True:
+        user = input("\nYou: ").lower()
+
+        if user == "hello" or user == "hi":
+            print("Agent: Hello! How can I help you?")
+
+        elif user == "date":
+            date = datetime.datetime.now().strftime("%d-%m-%Y")
+            print("Agent: Today's date is", date)
+
+        elif user == "exit":
+            print("Agent: Goodbye!")
+            break
+
+        else:
+            print("Agent: I don't understand.")
+
+ai_agent()
+```
+
+---
+
+## ▶️ How to Run
+
+### Step 1: Install Python
+
+Make sure Python is installed on your computer.
+
+Check Python using:
+
+```bash
+python --version
+```
+
+### Step 2: Create the Python File
 
 Create a file named:
 
 ```text
-.env
+ai_agent.py
 ```
 
-Inside the file, add:
+Copy the Python code into the file.
 
-```text
-OPENAI_API_KEY=your_api_key_here
-```
+### Step 3: Run the Program
 
-Replace `your_api_key_here` with your actual OpenAI API key.
-
-### ⚠️ Security Warning
-
-Never share your API key publicly.
-
-Do not upload the `.env` file to GitHub.
-
-The `.gitignore` file should contain:
-
-```text
-.env
-.venv/
-__pycache__/
-```
-
----
-
-## ▶️ Running the AI Agent
-
-After activating the virtual environment, run:
+Open the terminal in the project folder and run:
 
 ```bash
-python agent.py
+python ai_agent.py
 ```
-
-The program will display:
-
-```text
-=================================
-       BASIC AI AGENT
-=================================
-Type 'exit' to stop the agent.
-
-You:
-```
-
-Enter a question or instruction.
-
-For example:
-
-```text
-You: What is Python?
-```
-
-The AI Agent will generate a response.
 
 ---
 
-## 💬 Example Interaction
+## 🧪 Example
 
 ```text
-=================================
-       BASIC AI AGENT
-=================================
-Type 'exit' to stop the agent.
+Hello! I am your simple AI Agent.
 
-You: What is artificial intelligence?
+You: hello
+Agent: Hello! How can I help you?
 
-AI Agent: Artificial Intelligence (AI) is a field of computer science
-that enables computers and software to perform tasks that normally
-require human intelligence, such as learning, reasoning, and
-understanding language.
-
-You: Explain Python in simple words.
-
-AI Agent: Python is a high-level programming language known for its
-simple syntax and readability. It is widely used in web development,
-data science, automation, and artificial intelligence.
+You: date
+Agent: Today's date is 18-08-2026
 
 You: exit
-
-AI Agent: Goodbye!
+Agent: Goodbye!
 ```
 
 ---
 
-## 🧠 How the Code Works
+## ⚙️ How the Agent Works
 
-### 1. Import libraries
+The agent continuously takes input from the user.
 
-```python
-from openai import OpenAI
-from dotenv import load_dotenv
-import os
+### 1. Hello Command
+
+If the user enters:
+
+```text
+hello
 ```
 
-These libraries are used to communicate with the OpenAI API and load the API key from the `.env` file.
+or
 
-### 2. Load environment variables
-
-```python
-load_dotenv()
+```text
+hi
 ```
 
-This loads the values stored in the `.env` file.
+the agent responds with a greeting.
 
-### 3. Create OpenAI client
+### 2. Date Command
 
-```python
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+If the user enters:
+
+```text
+date
 ```
 
-The API key is retrieved from the environment and used to create the OpenAI client.
+the agent uses the `datetime` module to display the current date.
 
-### 4. Take user input
+### 3. Exit Command
 
-```python
-user_input = input("You: ")
-```
-
-This allows the user to enter a question or instruction.
-
-### 5. Send request to the AI model
-
-```python
-response = client.responses.create(
-    model="gpt-5-mini",
-    instructions="""
-    You are a helpful beginner-friendly AI Agent.
-    Answer questions clearly and simply.
-    If the user asks a programming question,
-    explain the answer with simple examples.
-    """,
-    input=user_input
-)
-```
-
-The user's input is sent to the selected AI model.
-
-### 6. Display the response
-
-```python
-print("\nAI Agent:", response.output_text)
-```
-
-The generated response is displayed on the screen.
-
-### 7. Exit the program
-
-The user can type:
+If the user enters:
 
 ```text
 exit
 ```
 
-to stop the AI Agent.
+the agent stops running.
 
----
+### 4. Unknown Command
 
-## 🤖 AI-Augmented Workflow
-
-AI was used as a development assistant during this project.
-
-The development workflow is:
+For any other input, the agent responds:
 
 ```text
-Project Requirement
-        ↓
-AI-Assisted Planning
-        ↓
-Architecture Decision
-        ↓
-Code Generation Assistance
-        ↓
-Developer Review
-        ↓
-Testing
-        ↓
-Debugging
-        ↓
-Final Implementation
-        ↓
-Documentation
+Agent: I don't understand.
 ```
 
-AI assistance can be used for:
+---
 
-* Understanding Python concepts.
-* Understanding OpenAI API usage.
-* Generating initial code examples.
-* Explaining errors.
-* Debugging.
-* Improving documentation.
-* Suggesting future features.
+## 🧠 AI Agent Concepts Used
 
-However, generated code should be **reviewed, understood, tested, and modified by the developer** before being used in the final project.
+| Concept         | Implementation |
+| --------------- | -------------- |
+| Input           | `input()`      |
+| Decision Making | `if-elif-else` |
+| Function        | `ai_agent()`   |
+| Loop            | `while True`   |
+| Tool/Module     | `datetime`     |
+| Exit Condition  | `break`        |
 
 ---
 
-## 📊 Advantages
+## 🚀 Future Improvements
 
-* Simple and beginner-friendly.
-* Easy to understand.
-* Uses Python, which is widely used in AI.
-* Easy integration with an AI model.
-* Interactive command-line interface.
-* Can be extended with additional features.
-* Suitable for demonstrating AI-assisted development.
+This basic agent can be improved by adding:
 
----
-
-## ⚠️ Limitations
-
-* Requires an internet connection.
-* Requires an OpenAI API key.
-* API usage may have associated costs.
-* The current version has no long-term conversation memory.
-* The current version does not use external tools.
-* The agent cannot independently perform complex real-world tasks yet.
-* AI-generated responses may sometimes be incorrect and should be verified.
+* Calculator functionality
+* Time functionality
+* Memory
+* More commands
+* Natural language processing
+* Voice input/output
+* An LLM such as an AI API
+* Multiple tools
 
 ---
 
-## 🔮 Future Enhancements
+## 📚 Learning Outcome
 
-The basic AI Agent can be improved by adding:
+After completing this project, a beginner can understand:
 
-### Version 2
-
-* Conversation memory.
-* Better error handling.
-* User interface.
-
-### Version 3
-
-* File reading and processing.
-* PDF/document analysis.
-* Task-specific tools.
-
-### Version 4
-
-* Web search capability.
-* Automated task execution.
-* More advanced agent planning.
-
-### Version 5
-
-* Local AI model support using Ollama.
-* Database integration.
-* Advanced multi-tool AI Agent.
+* Python functions
+* Loops
+* Conditional statements
+* User input
+* Python modules
+* Basic AI Agent architecture
 
 ---
 
-## 🔄 Alternative: Ollama
+## 👨‍💻 Author
 
-Instead of using the OpenAI API, the project can later be adapted to use **Ollama** with a compatible open-source AI model.
+**Aditya Patil**
 
-The alternative architecture is:
-
-```text
-USER
-  ↓
-Python Application
-  ↓
-AI Agent
-  ↓
-Ollama
-  ↓
-Local AI Model
-  ↓
-Response
-```
-
-Ollama can be useful when local AI model execution is preferred.
-
-However, local models may require additional system resources and configuration.
+Engineering – Artificial Intelligence & Machine Learning
 
 ---
 
-## 📄 Architecture Decision Record
+## 📄 License
 
-The technology selection for this project is documented separately in:
-
-```text
-ADR-001-Tech-Stack.md
-```
-
-The selected primary technology stack is:
-
-```text
-Python + OpenAI API
-```
-
-Ollama is considered as an alternative local/open-source solution.
-
----
-
-## 🧪 Testing
-
-The AI Agent should be tested using different types of inputs.
-
-### Test 1: General Question
-
-```text
-Input:
-What is Artificial Intelligence?
-
-Expected:
-The agent should provide a basic explanation of AI.
-```
-
-### Test 2: Programming Question
-
-```text
-Input:
-What is a Python loop?
-
-Expected:
-The agent should explain loops and provide a simple example.
-```
-
-### Test 3: Exit Command
-
-```text
-Input:
-exit
-
-Expected:
-The agent should display a goodbye message and stop.
-```
-
-### Test 4: Invalid/API Error
-
-If an API or network error occurs, the program should display an error message instead of crashing unexpectedly.
-
----
-
-## 📚 Learning Outcomes
-
-After completing this project, the student should understand:
-
-* Basic AI Agent concepts.
-* Python programming.
-* API integration.
-* Environment variables.
-* Secure API key handling.
-* AI-assisted coding.
-* Basic software architecture.
-* Testing and debugging.
-* Technical documentation using Markdown.
-* Architecture Decision Records.
-
----
-
-## 👨‍💻 Project Information
-
-**Project:** Basic AI Agent
-
-**Course:** AI-Augmented Workflow
-
-**Language:** Python
-
-**AI Service:** OpenAI API
-
-**Alternative:** Ollama
-
-**Project Type:** Beginner AI Application
-
-**Documentation:** Markdown
-
----
-
-## 📌 Conclusion
-
-This project demonstrates a simple implementation of an AI Agent using Python and the OpenAI API.
-
-The project focuses on understanding the fundamental architecture of an AI-powered application rather than introducing unnecessary complexity.
-
-The initial version provides an interactive interface where users can communicate with an AI model through a Python program. The system can later be expanded with memory, tools, file processing, web search, and local AI models.
-
-The project also demonstrates an **AI-Augmented Workflow**, where AI tools assist with planning, coding, debugging, and documentation while the developer remains responsible for reviewing, understanding, testing, and validating the final implementation.
+This project is created for **educational and college project purposes**.
