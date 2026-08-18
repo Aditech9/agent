@@ -1,44 +1,96 @@
-from openai import OpenAI
-from dotenv import load_dotenv
-import os
+import datetime
+import math
 
-# Load API key from .env file
-load_dotenv()
+# -------------------------
+# Agent Memory
+# -------------------------
+memory = []
 
-# Create OpenAI client
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-print("=================================")
-print("       BASIC AI AGENT")
-print("=================================")
+# -------------------------
+# Tools
+# -------------------------
+
+def get_time():
+    return datetime.datetime.now().strftime("%H:%M:%S")
+
+
+def get_date():
+    return datetime.datetime.now().strftime("%d-%m-%Y")
+
+
+def calculator(expression):
+    try:
+        result = eval(expression, {"__builtins__": {}}, {"math": math})
+        return result
+    except:
+        return "Invalid calculation"
+
+
+# -------------------------
+# AI Agent
+# -------------------------
+
+def ai_agent(user_input):
+
+    text = user_input.lower()
+
+    # Remember user information
+    if text.startswith("remember"):
+        information = user_input[8:].strip()
+        memory.append(information)
+        return "Okay, I will remember that."
+
+    # Show memory
+    if "what do you remember" in text:
+        if memory:
+            return "I remember: " + ", ".join(memory)
+        else:
+            return "I don't remember anything yet."
+
+    # Time tool
+    if "time" in text:
+        return "Current time is: " + get_time()
+
+    # Date tool
+    if "date" in text:
+        return "Today's date is: " + get_date()
+
+    # Calculator tool
+    if text.startswith("calculate"):
+        expression = user_input[9:].strip()
+        return "Answer: " + str(calculator(expression))
+
+    # Basic responses
+    if "hello" in text or "hi" in text:
+        return "Hello! I am your simple AI Agent."
+
+    if "how are you" in text:
+        return "I am fine! I am ready to help you."
+
+    if "your name" in text:
+        return "My name is Simple AI Agent."
+
+    return "Sorry, I don't understand that yet."
+
+
+# -------------------------
+# Run the Agent
+# -------------------------
+
+print("================================")
+print("       SIMPLE AI AGENT")
+print("================================")
 print("Type 'exit' to stop the agent.\n")
 
 while True:
 
-    # Take input from user
     user_input = input("You: ")
 
-    # Stop the program
     if user_input.lower() == "exit":
-        print("AI Agent: Goodbye!")
+        print("Agent: Goodbye!")
         break
 
-    try:
-        # Send user input to AI model
-        response = client.responses.create(
-            model="gpt-5-mini",
-            instructions="""
-            You are a helpful beginner-friendly AI Agent.
-            Answer questions clearly and simply.
-            If the user asks a programming question,
-            explain the answer with simple examples.
-            """,
-            input=user_input
-        )
+    response = ai_agent(user_input)
 
-        # Display AI response
-        print("\nAI Agent:", response.output_text)
-        print()
-
-    except Exception as e:
-        print("Error:", e)
+    print("Agent:", response)
